@@ -1,5 +1,4 @@
 import requests,re,json,random
-from bs4 import BeautifulSoup
 
 class QiyiSpider:
     '''
@@ -104,5 +103,5 @@ class PageComments:
 
 if __name__ == '__main__':
     spider = QiyiSpider()
-    comments = spider.get_comments('https://www.iqiyi.com/v_ofodke9m2s.html?vfrmrst=0&vfrm=3&vfrmblk=pca_115_iqiyihao_card')
+    comments = spider.get_comments('https://www.iqiyi.com/v_19rrjvkzb4.html?vfrmrst=0&vfrm=3&vfrmblk=pca_115_word_enlarge')
     print(comments)
