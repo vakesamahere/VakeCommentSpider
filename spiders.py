@@ -1,13 +1,7 @@
 import requests,re,json,random
 
-class QiyiSpider:
-    '''
-    爬虫类
-    '''
-    invalid_content_id="invalid_content_id"
-    content_id_url = 'https://mesh.if.iqiyi.com/player/lw/lwplay/accelerator.js?apiVer=2'
-    comment_url = 'https://sns-comment.iqiyi.com/v3/comment/get_baseline_comments.action'
-        # User-agent pool
+class Spider:
+    # User-agent pool
     user_agents = [
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
@@ -15,12 +9,23 @@ class QiyiSpider:
         "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/89.0"
     ]
-    
-    def __init__(self):
-        pass
 
     def get_random_user_agent(self):
         return random.choice(self.user_agents)
+
+    def __init__(self):
+        pass
+
+class QiyiSpider(Spider):
+    '''
+    爱奇艺评论区爬虫
+    '''
+    invalid_content_id="invalid_content_id"
+    content_id_url = 'https://mesh.if.iqiyi.com/player/lw/lwplay/accelerator.js?apiVer=2'
+    comment_url = 'https://sns-comment.iqiyi.com/v3/comment/get_baseline_comments.action'
+    
+    def __init__(self):
+        super().__init__()
     
     def get_content_id(self,referer):
         headers = {
@@ -84,6 +89,14 @@ class QiyiSpider:
             return result.only_content
         # else
         return []
+
+class TencentSpider(Spider):
+    '''
+    腾讯视频评论区爬虫，没写呢
+    '''
+    def __init__(self):
+        super().__init__()
+    
 
 class PageComments:
     '''
